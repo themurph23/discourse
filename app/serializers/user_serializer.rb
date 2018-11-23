@@ -33,7 +33,6 @@ class UserSerializer < BasicUserSerializer
   end
 
   attributes :name,
-             :email,
              :last_posted_at,
              :last_seen_at,
              :bio_raw,
@@ -144,8 +143,9 @@ class UserSerializer < BasicUserSerializer
   end
 
   def include_email?
-    (object.id && object.id == scope.user.try(:id)) ||
-      (scope.is_staff? && object.staged?)
+    false
+	  #    (object.id && object.id == scope.user.try(:id)) ||
+ #     (scope.is_staff? && object.staged?)
   end
 
   def include_associated_accounts?
@@ -259,7 +259,8 @@ class UserSerializer < BasicUserSerializer
   end
 
   def can_edit_email
-    scope.can_edit_email?(object)
+    false
+	  #scope.can_edit_email?(object)
   end
 
   def can_edit_name
@@ -274,8 +275,6 @@ class UserSerializer < BasicUserSerializer
     UserAction.stats(object.id, scope)
   end
 
-  # Needed because 'send_private_message_to_user' will always return false
-  # when the current user is being serialized
   def can_send_private_messages
     scope.can_send_private_message?(Discourse.system_user)
   end
@@ -466,3 +465,5 @@ class UserSerializer < BasicUserSerializer
   end
 
 end
+class UserSerializer < BasicUserSerializer
+class UserSerializer < BasicUserSerializer
