@@ -465,5 +465,3 @@ class UserSerializer < BasicUserSerializer
   end
 
 end
-class UserSerializer < BasicUserSerializer
-class UserSerializer < BasicUserSerializer
